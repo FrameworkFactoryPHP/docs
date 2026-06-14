@@ -18,13 +18,10 @@
 >   └─ give → ReportLogger
 > ```
 
-> We can access the Context API by two methods. Either within the service Provider, or using an Accessor class. We will look
-> at each example below.
-
-## Within a Service Provider
-> How do we access the Context API using a service provider? The process is quite simple. Using the example above, we 
-> can add the following to a service providers `boot()` method. This ensures that the  service has been bound to the 
-> container and that the container is fully built.
+> In order to add contextual rules inside a Service Provider, we simply have to call the
+> Context API from that Provider from within the `register()` method. The Context System
+> provides a Fluent API with descriptive methods that are to be chained together, in order
+> to create the required contextual rules.
 
 ```php
 use FrameworkFactory\Contracts\Providers\ServiceProvider;
@@ -38,10 +35,7 @@ class ReportServiceProvider extends ServiceProvider
     {
         // first we want to bind the service to the container
         $this->bind(ReportService::class, fn() => new ReportService());
-    }
-    
-    public function boot(): void
-    {    
+        
         // now we can utilize the Context API
         $this->when(ReportService::class)
              ->needs(LoggerInterface::class)
@@ -50,9 +44,7 @@ class ReportServiceProvider extends ServiceProvider
 }
 ```
 
-## Within an Accessor
-**IN PROGRESS**
-
 ___
 - **See Also: [Service Providers](https://github.com/FrameworkFactoryPHP/docs/blob/main/PROVIDERS.md)**
+- **See Also: [Lifecycle Hooks](https://github.com/FrameworkFactoryPHP/docs/blob/main/LIFECYCLE_HOOKS.md)**
 - **See Also: [Accessors](https://github.com/FrameworkFactoryPHP/docs/blob/main/ACCESSORS.md)**
