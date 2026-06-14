@@ -5,23 +5,21 @@
 > are available and allowing applications to maintain a predictable and organized startup sequence.
 >
 > There are two separate lifecycle hooks that are available on the container instance:
-> - `beforeResolving()` - executes _before_ a dependency has been resolved
-> - `afterResolving()` - executes _after_ a dependency has been resolved
+> - `beforeResolving()`
+> - `afterResolving()`
 
-> When using lifecycle hooks in a service provider we will call them using the available container instance, from within 
-> the service providers' `boot()` method.
+> When using lifecycle hooks in a service provider we will call them using the available container instance from within 
+> the service providers' `register()` method.
 ```php
 use App\Services\Message as MessageService;
 
 public register function(): void
 {
+    // first we bind the service(s) to the container
     $this->bind(MessageService::class, fn() => new MessageService());
-}
-
-public function boot(): void
-{
-    $this->beforeResolving(MessageService::class, fn() => 'Do Something ...')
     
+    // now we can interact with the lifecycle hooks
+    $this->beforeResolving(MessageService::class, fn() => 'Do Something ...')
     $this->afterResolving(MessageService::class, fn() => 'Do Something Else ...')
 }
 ```
