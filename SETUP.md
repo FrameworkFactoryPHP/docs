@@ -63,7 +63,8 @@ $app->withProviders([
 $app = Application::build(basePath: __DIR__ . '/../', appNamespace: 'MyApp', appDirectory: 'app');
 ```
 > Now any classes within the `MyApp\Providers` directory that end with either `Provider` or `ServiceProvider` will be 
-> automatically added and their services will be loaded into to the container.
+> automatically added and their services will be loaded into the container - EG: `MyApp\Providers\LoggerServiceProvider` or
+> `MyApp\Providers\LoggerProvider`.
 
 ## Configuration
 > Each application instance has the ability to set configurable options. These configuration options are completely dynamic
