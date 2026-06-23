@@ -60,9 +60,9 @@ $app->withProviders([
 <?php
  use FrameworkFactory\Application;
 
-$app = Application::build(basePath: __DIR__ . '/../', appNamespace: 'App', appDirectory: 'app');
+$app = Application::build(basePath: __DIR__ . '/../', appNamespace: 'MyApp', appDirectory: 'app');
 ```
-> Now any classes within the `App\Providers` directory that end with either `Provider` or `ServiceProvider` will be 
+> Now any classes within the `MyApp\Providers` directory that end with either `Provider` or `ServiceProvider` will be 
 > automatically added and their services will be loaded into to the container.
 
 ## Configuration
